@@ -19,7 +19,7 @@ class test(SampleBase):
 
     def run(self):
         img = Image.open("./BusBlinker/crest2.png").convert("RGB")
-        img2 = img.rotate(90) 
+        img2 = img.rotate(90, expand=True) 
         canvas = self.matrix.CreateFrameCanvas()
         while True:
             canvas.SetImage(img2)
