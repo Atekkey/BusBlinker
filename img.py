@@ -21,10 +21,10 @@ class test(SampleBase):
         img0 = Image.open("./BusBlinker/crest2.png").convert("RGB")
         img = img0.rotate(90, expand=True) 
         padding_top = 10
-        new_width = img.width
-        new_height = img.height + padding_top
+        new_width = img.width + padding_top
+        new_height = img.height 
         new_img = Image.new("RGB", (new_width, new_height), color=(0, 0, 0))
-        new_img.paste(img, (0, padding_top))
+        new_img.paste(img, (padding_top, 0))
 
         canvas = self.matrix.CreateFrameCanvas()
         while True:
