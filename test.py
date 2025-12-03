@@ -30,8 +30,8 @@ class test(SampleBase):
         super(test, self).__init__(*args, **kwargs)
     
     def setMatrixOnCanvas(self, array, canvas):
-        for y in range(canvas.height):
-            for x in range(canvas.width):
+        for y in range(array.shape[0]):
+            for x in range(array.shape[1]):
                 if array[y, x] == 1:
                     canvas.SetPixel(x, y, 255, 0, 0)  # red
                 else:
