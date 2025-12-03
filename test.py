@@ -21,10 +21,11 @@ def makeTimeMatrix(input):
 
     # Combine horizontally
     full_array = np.hstack(arrays)
-    rotated = np.rot90(full_array, k=1)
-    padded = np.pad(rotated, ((12, 0), (0, 0)), mode='constant')
+    padded = np.pad(full_array, ((12, 0), (0, 0)), mode='constant')
+    rotated = np.rot90(padded, k=1)
+    
 
-    return padded
+    return rotated
 
 
 
