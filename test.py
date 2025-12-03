@@ -21,8 +21,21 @@ def makeTimeMatrix(input):
 
     # Combine horizontally
     full_array = np.hstack(arrays)
-    full_rot = np.rot90(full_array, k=1)
-    return full_rot
+    rotated = np.rot90(full_array, k=1)
+
+    matrix_height = 64  # total rows of your rotated display
+    matrix_width = 32   # total columns
+    rotated_height, rotated_width = rotated.shape
+
+    top_padding = (matrix_height - rotated_height) // 2
+    bottom_padding = matrix_height - rotated_height - top_padding
+
+    centered_array = np.pad(rotated, ((top_padding, bottom_padding), (0, matrix_width - rotated_width)), mode='constant')
+
+    horizontal_padding = (matrix_width - rotated_width) // 2
+    centered_array = np.pad(rotated, ((top_padding, bottom_padding), (horizontal_padding, matrix_width - rotated_width - horizontal_padding)), mode='constant')
+
+    return centered_array
 
 
 
