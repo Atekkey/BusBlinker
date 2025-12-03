@@ -18,11 +18,17 @@ class test(SampleBase):
     
 
     def run(self):
-        img = Image.open("./BusBlinker/crest2.png").convert("RGB")
-        img2 = img.rotate(90, expand=True) 
+        img0 = Image.open("./BusBlinker/crest2.png").convert("RGB")
+        img = img0.rotate(90, expand=True) 
+        padding_top = 10
+        new_width = img.width
+        new_height = img.height + padding_top
+        new_img = Image.new("RGB", (new_width, new_height), color=(0, 0, 0))
+        new_img.paste(img, (0, padding_top))
+
         canvas = self.matrix.CreateFrameCanvas()
         while True:
-            canvas.SetImage(img2)
+            canvas.SetImage(new_img)
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
             time.sleep(1)
 
