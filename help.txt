@@ -6,4 +6,6 @@ export F="--led-no-hardware-pulse=true --led-cols=64 --led-scan-mode=0 --led-pwm
 
 sudo nohup python3.11 BusBlinker/test.py $F &
 
-sudo  python3.11 BusBlinker/test.py $F 
+sudo python3.11 BusBlinker/test.py $F 
+
+Find Process: ps aux | grep python

@@ -15,7 +15,7 @@ import numpy as np
 def makeTimeMatrix(input):
     rows = 5
     arrays = []
-    digit_map = digit_maps.fiveByThree
+    digit_map = digit_maps.sevenByFive
     for char in input:
         arrays.append(digit_map[char])
         # Add spacing between digits
@@ -60,7 +60,7 @@ class test(SampleBase):
             now = datetime.now()
             hour_min = now.strftime("%I:%M")
             sec = now.strftime("%S").zfill(2)
-            matrix = makeTimeMatrix(hour_min + ":" +sec)
+            matrix = makeTimeMatrix(hour_min) # + ":" +sec
             self.setMatrixOnCanvas(matrix, canvas)
             canvas.SetImage(new_img)
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
