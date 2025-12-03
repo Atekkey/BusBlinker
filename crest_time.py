@@ -23,7 +23,7 @@ def makeTimeMatrix(input):
 
     # Combine horizontally
     full_array = np.hstack(arrays)
-    padded = np.pad(full_array, ((32-3, 0), (0, 0)), mode='constant')
+    padded = np.pad(full_array, ((65-7, 0), (0, 0)), mode='constant')
     padded2 = np.pad(padded, ((0, 0), (0, 2)), mode='constant')
 
     rotated = np.rot90(padded2, k=1)
@@ -38,8 +38,8 @@ class test(SampleBase):
         super(test, self).__init__(*args, **kwargs)
     
     def setMatrixOnCanvas(self, array, canvas):
-        for y in range(array.shape[0]):
-            for x in range(array.shape[1]):
+        for y in range(30, array.shape[0]):
+            for x in range(10, array.shape[1]):
                 if array[y, x] == 1:
                     canvas.SetPixel(x, y, 255, 0, 0)  # red
                 else:
@@ -55,13 +55,14 @@ class test(SampleBase):
         new_img.paste(img, (padding_top, 0))
 
         canvas = self.matrix.CreateFrameCanvas()
-        canvas.SetImage(new_img)
+        
         while True:
             now = datetime.now()
             hour_min = now.strftime("%I:%M")
             sec = now.strftime("%S").zfill(2)
             matrix = makeTimeMatrix(hour_min + ":" +sec)
             self.setMatrixOnCanvas(matrix, canvas)
+            canvas.SetImage(new_img)
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
             time.sleep(1)
 
