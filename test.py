@@ -21,7 +21,8 @@ def makeTimeMatrix(input):
 
     # Combine horizontally
     full_array = np.hstack(arrays)
-    return full_array
+    full_rot = np.rot90(full_array, k=1)
+    return full_rot
 
 
 
