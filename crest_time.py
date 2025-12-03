@@ -13,7 +13,7 @@ from samplebase import SampleBase
 import numpy as np
 
 def makeTimeMatrix(input):
-    rows = 5
+    rows = 7
     arrays = []
     digit_map = digit_maps.sevenByFive
     for char in input:
@@ -23,8 +23,8 @@ def makeTimeMatrix(input):
 
     # Combine horizontally
     full_array = np.hstack(arrays)
-    padded = np.pad(full_array, ((65-7, 0), (0, 0)), mode='constant')
-    padded2 = np.pad(padded, ((0, 0), (0, 2)), mode='constant')
+    padded = np.pad(full_array, ((65-9, 0), (0, 0)), mode='constant')
+    padded2 = np.pad(padded, ((0, 0), (0, 5)), mode='constant')
 
     rotated = np.rot90(padded2, k=1)
     
