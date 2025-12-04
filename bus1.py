@@ -63,6 +63,11 @@ def makeRegMatrix():
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
     draw_string(arrCanv, "E", off + 10*2, 0, color=2)
+
+    now = datetime.now()
+    hour_min = now.strftime("%I:%M")
+    draw_string(arrCanv, hour_min, off + 10*5, 4, color=3)
+    
     end = np.rot90(arrCanv, k=1)
     return end
 
@@ -80,7 +85,7 @@ class test(SampleBase):
                 elif array[y, x] == 2:
                     canvas.SetPixel(x, y, 0, 255, 0) # G 
                 elif array[y, x] == 3:
-                    canvas.SetPixel(x, y, 255, 255, 255) # G 
+                    canvas.SetPixel(x, y, 255, 255, 255) # W
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
     
