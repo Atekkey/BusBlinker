@@ -1,11 +1,15 @@
 #!/usr/bin/env python
-import time
 import sys
-
-from rgbmatrix import RGBMatrix, RGBMatrixOptions
+import os
+import time
+from datetime import datetime
+import digit_maps
 from PIL import Image
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from samplebase import SampleBase
+import numpy as np
 
 
 class test(SampleBase):
