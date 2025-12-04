@@ -33,9 +33,7 @@ def fetchBusInfoFromData(data):
             continue
         expStringHMS = expString[-14:-6]
         busDict["expectedHMS"] = expStringHMS
-        busDict["expectedH"] = int(expStringHMS[:2])
-        busDict["expectedM"] = int(expStringHMS[3:5])
-        busDict["expectedS"] = int(expStringHMS[6:8])
+        busDict["totSec"] = int(expStringHMS[:2]) * 3600 + int(expStringHMS[3:5]) * 60 + int(expStringHMS[6:8])
         out.append(busDict)
     
     return out
