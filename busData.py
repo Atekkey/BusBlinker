@@ -9,3 +9,4 @@ def fetchData():
     else:
         return ""
 data = fetchData()
+print(data)
