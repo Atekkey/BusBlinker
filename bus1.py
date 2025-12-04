@@ -31,6 +31,9 @@ def makeTimeMatrix(input):
 
     return rotated
 
+def makeRegMatrix():
+    arr = np.zeros((64, 32), dtype=int)
+
 print("reach")
 
 class test(SampleBase):
@@ -44,7 +47,7 @@ class test(SampleBase):
                     canvas.SetPixel(x, y, 155, 155, 155) # Gray
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
-
+    
     def run(self):
         
         canvas = self.matrix.CreateFrameCanvas()
@@ -53,7 +56,7 @@ class test(SampleBase):
             now = datetime.now()
             hour_min = now.strftime("%I:%M")
             sec = now.strftime("%S").zfill(2)
-            matrix = makeTimeMatrix(hour_min) # + ":" +sec
+            matrix = makeRegMatrix() # + ":" +sec
             self.setMatrixOnCanvas(matrix, canvas)
             
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
