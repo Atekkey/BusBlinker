@@ -55,16 +55,16 @@ def makeRegMatrix():
     for bus in busInfo:
         if 'N' in bus["headsign"]:
             s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 1, 0, color=3)
+            draw_string(arrCanv, s, off + 1, 8, color=3)
         if 'S' in bus["headsign"]:
             s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 10*1, 0, color=3)
-        if 'E' in bus["headsign"]:
-            s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 10*2, 0, color=3)
+            draw_string(arrCanv, s, off + 10*1, 8, color=3)
+        # if 'E' in bus["headsign"]:
+        #     s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1]).zfill(2)
+        #     draw_string(arrCanv, s, off + 10*2, 8, color=3)
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
-    draw_string(arrCanv, "E", off + 10*2, 0, color=2)
+    # draw_string(arrCanv, "E", off + 10*2, 0, color=2)
 
     now = datetime.now()
     date = now.strftime("%m/%d")
