@@ -18,7 +18,7 @@ class test(SampleBase):
     
 
     def run(self):
-        img0 = Image.open("./BusBlinker/rab.png").convert("RGB")
+        img0 = Image.open("./BusBlinker/crest.png").convert("RGB")
         img = img0.crop((0,0,64,32))
         img = img.rotate(90, expand=True) 
         padding_top = 10
