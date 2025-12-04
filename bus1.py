@@ -53,9 +53,11 @@ def makeRegMatrix():
     off = 1
     busInfo = myMain()
     for bus in busInfo:
-        min, sec = bus["time_left"][0], bus["time_left"][1]        
-        min = 13
-        if min > 10:
+        min, sec = bus["time_left"][0], bus["time_left"][1]
+        min = 122
+        if min > 59:
+            s = str(min // 60) + "_H"
+        elif min > 10:
             s = str(min) + "_M"
         else:
             s = str(min) + ":" + str(sec).zfill(2)
