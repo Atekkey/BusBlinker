@@ -34,11 +34,11 @@ class test(SampleBase):
             frame.thumbnail((self.matrix.width, self.matrix.height), Image.LANCZOS)
             
             img = (frame.convert("RGB")).rotate(90, expand=True)
-            
+            padding_top = 10
             new_width = img.width 
-            new_height = img.height + 15
+            new_height = img.height + padding_top
             new_img = Image.new("RGB", (new_width, new_height), color=(0, 0, 0))
-            new_img.paste(img, (15, 0))
+            new_img.paste(img, (padding_top, 0))
 
             frames.append(new_img)
 
