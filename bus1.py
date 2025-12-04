@@ -55,13 +55,13 @@ def makeRegMatrix():
     for bus in busInfo:
         if 'N' in bus["headsign"]:
             s = str(bus["time_left"][0])[-1] + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 1, 7, color=3)
+            draw_string(arrCanv, s, off + 1, 9, color=3)
         if 'S' in bus["headsign"]:
             s = str(bus["time_left"][0])[-1] + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 10*1, 7, color=3)
+            draw_string(arrCanv, s, off + 10*1, 9, color=3)
         if 'E' in bus["headsign"]:
             s = str(bus["time_left"][0])[-1] + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 10*2, 7, color=3)
+            draw_string(arrCanv, s, off + 10*2, 9, color=3)
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
     draw_string(arrCanv, "E", off + 10*2, 0, color=2)
@@ -71,10 +71,10 @@ def makeRegMatrix():
     day_of_week = now.strftime("%a")
     
     day_of_week = day_of_week
-    draw_string(arrCanv, day_of_week.upper(), off + 10*3, 0, color=6)
-    draw_string(arrCanv, date, off + 10*4, 0, color=5)
+    draw_string(arrCanv, day_of_week.upper(), off + 10*3, 2, color=6)
+    draw_string(arrCanv, date, off + 10*4, 2, color=5)
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, hour_min, off + 10*5, 0, color=4)
+    draw_string(arrCanv, hour_min, off + 10*5, 2, color=4)
     
     end = np.rot90(arrCanv, k=1)
     return end
