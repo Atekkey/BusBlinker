@@ -7,7 +7,7 @@ import digit_maps
 from PIL import Image
 
 from busData import myMain
-
+import time
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -76,9 +76,9 @@ def makeRegMatrix():
     
     day_of_week = day_of_week
     draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=6)
-    draw_string(arrCanv, date, off + 10*4, 2, color=5)
+    draw_string(arrCanv, date, off + 10*4, 2, color=7)
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, hour_min, off + 10*5, 2, color=4)
+    draw_string(arrCanv, hour_min, off + 10*5, 2, color=8)
     
     end = np.rot90(arrCanv, k=1)
     return end
@@ -103,6 +103,10 @@ class test(SampleBase):
                     canvas.SetPixel(x, y, 98, 174, 179) # LB2 
                 elif array[y, x] == 6:
                     canvas.SetPixel(x, y, 178, 232, 116) # lg
+                elif array[y, x] == 7:
+                    canvas.SetPixel(x, y, 19, 41, 75) # uiuc B
+                elif array[y, x] == 8:
+                    canvas.SetPixel(x, y, 255, 95, 5) # uiuc OR
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
     
