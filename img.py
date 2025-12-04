@@ -25,7 +25,7 @@ class test(SampleBase):
         new_height = img.height 
         new_img = Image.new("RGB", (new_width, new_height), color=(0, 0, 0))
         new_img.paste(img, (padding_top, 0))
-
+        
         canvas = self.matrix.CreateFrameCanvas()
         while True:
             canvas.SetImage(new_img)

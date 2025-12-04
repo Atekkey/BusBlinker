@@ -20,11 +20,11 @@ def makeTimeMatrix(input):
         arrays.append(digit_map[char])
         # Add spacing between digits
         arrays.append(np.zeros((rows, 1), dtype=int))
-
+    
     # Combine horizontally
     full_array = np.hstack(arrays)
     padded = np.pad(full_array, ((65-9, 0), (0, 0)), mode='constant')
-    padded2 = np.pad(padded, ((0, 0), (0, 5)), mode='constant')
+    padded2 = np.pad(padded, ((0, 0), (0, 3)), mode='constant')
 
     rotated = np.rot90(padded2, k=1)
     
@@ -41,7 +41,7 @@ class test(SampleBase):
         for y in range(2, array.shape[0]):
             for x in range(array.shape[1]):
                 if array[y, x] == 1:
-                    canvas.SetPixel(x, y, 255, 0, 0)
+                    canvas.SetPixel(x, y, 255, 255, 0) # Yellow
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
 
