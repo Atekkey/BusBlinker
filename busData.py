@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 def fetchData():
     api_url = "https://api.uiucbus.com/api/getdeparturesbystop?stop_id=1STSTDM"
     response = requests.get(api_url)
@@ -36,6 +37,16 @@ def fetchBusInfoFromData(data):
     
     return out
 
+def thisTimeSec():
+    now = datetime.now()
+    h,m  = now.strftime("%I:%M").split(":")
+    sec = now.strftime("%S").zfill(2)
+    tot = int(h)*3600 + int(m)*60 + int(sec)
+    print(tot)
+    return tot
 data = fetchData()
 bus_info = fetchBusInfoFromData(data)
 print(bus_info)
+thisTimeSec()
+
+
