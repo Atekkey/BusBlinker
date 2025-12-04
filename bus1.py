@@ -13,6 +13,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from samplebase import SampleBase
 import numpy as np
+MAP = {"M":"MON", "T":"TUE", "W":"WED", "R":"THU", "F":"FRI", "S":"SAT", "U":"SUN"}
 
 def makeTimeMatrix(input):
     rows = 7
@@ -67,6 +68,8 @@ def makeRegMatrix():
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = now.strftime("%a")
+    
+    day_of_week = MAP[day_of_week]
     draw_string(arrCanv, day_of_week.upper(), off + 10*3, 0, color=1)
     draw_string(arrCanv, date, off + 10*4, 0, color=5)
     hour_min = now.strftime("%I:%M")
@@ -75,7 +78,6 @@ def makeRegMatrix():
     end = np.rot90(arrCanv, k=1)
     return end
 
-print("reach")
 
 class test(SampleBase):
     def __init__(self, *args, **kwargs):
