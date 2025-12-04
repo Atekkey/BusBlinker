@@ -70,15 +70,14 @@ def makeRegMatrix():
     day_of_week = now.strftime("%a")
     
     day_of_week = day_of_week
-    draw_string(arrCanv, day_of_week.upper(), off + 10*3, 5, color=6)
-    draw_string(arrCanv, date, off + 10*4, 5, color=5)
+    draw_string(arrCanv, day_of_week.upper(), off + 10*3, 0, color=6)
+    draw_string(arrCanv, date, off + 10*4, 0, color=5)
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, hour_min, off + 10*5, 4, color=4)
+    draw_string(arrCanv, hour_min, off + 10*5, 0, color=4)
     
     end = np.rot90(arrCanv, k=1)
     return end
 
-print("reach")
 
 class test(SampleBase):
     def __init__(self, *args, **kwargs):
