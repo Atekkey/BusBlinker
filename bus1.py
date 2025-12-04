@@ -56,7 +56,7 @@ def makeRegMatrix():
         min, sec = bus["time_left"][0], bus["time_left"][1]        
         min = 13
         if min > 10:
-            s = str(min) + " M"
+            s = str(min) + "__M"
         else:
             s = str(min) + ":" + str(sec).zfill(2)
 
