@@ -43,12 +43,12 @@ def thisTimeSec():
     h,m  = now.strftime("%I:%M").split(":")
     sec = now.strftime("%S").zfill(2)
     tot = int(h)*3600 + int(m)*60 + int(sec)
-    print(tot)
     return tot
 
 data = fetchData()
 bus_info = fetchBusInfoFromData(data)
 thisTimeSec()
+
 for bus in bus_info:
     remSec = (bus["totSec"] - thisTimeSec()) % (86400)
     remMin = remSec // 60
