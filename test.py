@@ -18,7 +18,7 @@ def makeTimeMatrix(input):
         arrays.append(digit_map[char])
         # Add spacing between digits
         arrays.append(np.zeros((rows, 1), dtype=int))
-
+    
     # Combine horizontally
     full_array = np.hstack(arrays)
     padded = np.pad(full_array, ((32-3, 0), (0, 0)), mode='constant')
