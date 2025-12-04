@@ -5,6 +5,8 @@ import sys
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from PIL import Image
 
+from samplebase import SampleBase
+
 
 class test(SampleBase):
     def __init__(self, *args, **kwargs):
