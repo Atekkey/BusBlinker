@@ -9,3 +9,5 @@ sudo nohup python3.11 BusBlinker/crest_time.py $F &
 sudo python3.11 BusBlinker/test.py $F 
 
 Find Process: ps aux | grep python
+
+sudo nohup python3.11 BusBlinker/bus1.py $F &
