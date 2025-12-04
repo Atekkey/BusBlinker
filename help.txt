@@ -11,3 +11,5 @@ sudo python3.11 BusBlinker/test.py $F
 Find Process: ps aux | grep python
 
 sudo nohup python3.11 BusBlinker/bus1.py $F &
+
+sudo nohup python3.11 BusBlinker/img.py $F &
