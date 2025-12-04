@@ -20,8 +20,8 @@ class test(SampleBase):
     def run(self):
         img0 = Image.open("./BusBlinker/rab.png").convert("RGB")
         img = img0.crop((0,0,32,32))
-        img = img0.rotate(90, expand=True) 
-        padding_top = 0
+        img = img.rotate(90, expand=True) 
+        padding_top = 10
         new_width = img.width + padding_top
         new_height = img.height 
         new_img = Image.new("RGB", (new_width, new_height), color=(0, 0, 0))
