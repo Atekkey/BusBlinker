@@ -92,7 +92,8 @@ class test(SampleBase):
         for y in range(2, array.shape[0]):
             for x in range(array.shape[1]):
                 if array[y, x] == 1:
-                    canvas.SetPixel(x, y, 153, 54, 199) # purp 
+                    a = 20
+                    canvas.SetPixel(x, y, 153+a, 54+a, 199+a) # purp 
                 elif array[y, x] == 2:
                     canvas.SetPixel(x, y, 0, 255, 0) # G 
                 elif array[y, x] == 3:
