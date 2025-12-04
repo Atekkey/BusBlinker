@@ -104,7 +104,8 @@ class test(SampleBase):
                 elif array[y, x] == 6:
                     canvas.SetPixel(x, y, 178, 232, 116) # lg
                 elif array[y, x] == 7:
-                    canvas.SetPixel(x, y, 5+20, 86+20, 165+20) # uiuc B
+                    a = 40
+                    canvas.SetPixel(x, y, 5+a, 86+a, 165+a) # uiuc B
                 elif array[y, x] == 8:
                     canvas.SetPixel(x, y, 255, 95, 5) # uiuc OR
                 else:
