@@ -4,7 +4,7 @@ ssh triangle@ajtrpi.local
 
 export F="--led-no-hardware-pulse=true --led-cols=64 --led-scan-mode=0 --led-pwm-bits=11 --led-slowdown-gpio=2"
 
-sudo nohup python3.11 BusBlinker/test.py $F &
+sudo nohup python3.11 BusBlinker/crest_time.py $F &
 
 sudo python3.11 BusBlinker/test.py $F 
 

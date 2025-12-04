@@ -28,11 +28,27 @@ def makeTimeMatrix(input):
 
     rotated = np.rot90(padded2, k=1)
     
-
     return rotated
 
+def draw_char(canvas, char_array, top_left_row, top_left_col):
+    rows, cols = char_array.shape
+    canvas[top_left_row:top_left_row+rows, top_left_col:top_left_col+cols] = char_array
+
+def draw_string(canvas, text, start_row, start_col, spacing=1):
+    col = start_col
+    sevenByFive = digit_maps.sevenByFive
+    for char in text:
+        if char in sevenByFive:
+            char_array = sevenByFive[char]
+            draw_char(canvas, char_array, start_row, col)
+            col += char_array.shape[1] + spacing 
+
+
 def makeRegMatrix():
-    arr = np.zeros((64, 32), dtype=int)
+    arrCanv = np.zeros((64, 32), dtype=int)
+    draw_string(arrCanv, "NS\N_N", 2, 5)
+    end = np.rot90(arrCanv, k=1)
+    return end
 
 print("reach")
 
@@ -53,10 +69,7 @@ class test(SampleBase):
         canvas = self.matrix.CreateFrameCanvas()
         
         while True:
-            now = datetime.now()
-            hour_min = now.strftime("%I:%M")
-            sec = now.strftime("%S").zfill(2)
-            matrix = makeRegMatrix() # + ":" +sec
+            matrix = makeRegMatrix() 
             self.setMatrixOnCanvas(matrix, canvas)
             
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
