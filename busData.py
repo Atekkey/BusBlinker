@@ -48,7 +48,10 @@ def thisTimeSec():
 
 data = fetchData()
 bus_info = fetchBusInfoFromData(data)
-print(bus_info)
 thisTimeSec()
+for bus in bus_info:
+    remSec = (bus["totSec"] - thisTimeSec()) % (86400)
+    remMin = remSec // 60
+    print(remMin)
 
 
