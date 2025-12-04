@@ -71,7 +71,7 @@ def makeRegMatrix():
     day_of_week = now.strftime("%a")
     
     day_of_week = day_of_week
-    draw_string(arrCanv, day_of_week.upper(), off + 10*3, 2, color=6)
+    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 5, color=6)
     draw_string(arrCanv, date, off + 10*4, 2, color=5)
     hour_min = now.strftime("%I:%M")
     draw_string(arrCanv, hour_min, off + 10*5, 2, color=4)
