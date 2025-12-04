@@ -32,7 +32,15 @@ class test(SampleBase):
             # must copy the frame out of the gif, since thumbnail() modifies the image in-place
             frame = gif.copy()
             frame.thumbnail((self.matrix.width, self.matrix.height), Image.LANCZOS)
-            frames.append((frame.convert("RGB")).rotate(90, expand=True))
+            
+            img = (frame.convert("RGB")).rotate(90, expand=True)
+            padding_top = 10
+            new_width = img.width + padding_top
+            new_height = img.height 
+            new_img = Image.new("RGB", (new_width, new_height), color=(0, 0, 0))
+            new_img.paste(img, (padding_top, 0))
+
+            frames.append(new_img)
 
         # Close the gif file to save memory now that we have copied out all of the frames
         gif.close()
