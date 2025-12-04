@@ -68,7 +68,7 @@ def makeRegMatrix():
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = now.strftime("%a")
-    
+    print(day_of_week)
     day_of_week = MAP[day_of_week.upper()].upper()
     draw_string(arrCanv, day_of_week.upper(), off + 10*3, 0, color=1)
     draw_string(arrCanv, date, off + 10*4, 0, color=5)
