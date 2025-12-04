@@ -8,5 +8,34 @@ def fetchData():
         return data
     else:
         return ""
+
+def fetchBusInfoFromData(data):
+    departures = data.get("departures", [])
+    out = []
+    
+    # If no busses, return empty list
+    if not departures: 
+        return out
+    
+    # For every bus get the headsign and expected time (split into multiple fields)
+    for busInfo in departures:
+        busDict = {}
+        busDict["headsign"] = headsign = busInfo.get("headsign", "")
+        left = headsign.split(" ")[0]
+        if left not in ["220N", "220S", "22N", "22S", "50E", "5E"]:
+            continue
+        expString = busInfo.get("expected", "")
+        if expString == "":
+            continue
+        expStringHMS = expString[-14:-6]
+        busDict["expectedHMS"] = expStringHMS
+        busDict["expectedH"] = int(expStringHMS[:2])
+        busDict["expectedM"] = int(expStringHMS[3:5])
+        busDict["expectedS"] = int(expStringHMS[6:8])
+        out.append(busDict)
+    
+    return out
+
 data = fetchData()
-print(data)
+bus_info = fetchBusInfoFromData(data)
+print(bus_info)
