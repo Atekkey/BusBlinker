@@ -18,7 +18,7 @@ class test(SampleBase):
     
 
     def run(self):
-        img0 = Image.open("./BusBlinker/crest.png").convert("RGB")
+        img0 = Image.open("./crest.png").convert("RGB")
         img = img0.rotate(90, expand=True) 
         padding_top = 10
         new_width = img.width + padding_top
