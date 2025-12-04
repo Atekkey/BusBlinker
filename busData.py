@@ -38,6 +38,7 @@ def fetchBusInfoFromData(data):
         m = int(expStringHMS[3:5])
         s = int(expStringHMS[6:8])
         busDict["time"] = time(hour=h, minute=m, second=s)
+        busDict["e_min"] = busInfo["expected_minutes"]
         out.append(busDict)
     
     return out
