@@ -53,23 +53,18 @@ def makeRegMatrix():
     off = 1
     busInfo = myMain()
     for bus in busInfo:
+        min, sec = bus["time_left"][0], bus["time_left"][1]        
+        min = 13
+        if min > 10:
+            s = str(min)
+        else:
+            s = str(min) + ":" + str(sec).zfill(2)
+
         if 'N' in bus["headsign"]:
-            if bus["time_left"][0] > 10:
-                s = str(bus["time_left"][0])
-            else:
-                s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1]).zfill(2)
-            #s = str(bus["e_min"])
             draw_string(arrCanv, s, off + 1, 8, color=3)
-        if 'S' in bus["headsign"]:
-            bus["time_left"][0] = 13
-            if bus["time_left"][0] > 10:
-                s = str(bus["time_left"][0])
-            else:
-                s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1]).zfill(2)
+        elif 'S' in bus["headsign"]:
             draw_string(arrCanv, s, off + 10*1, 8, color=3)
-        # if 'E' in bus["headsign"]:
-        #     s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1]).zfill(2)
-        #     draw_string(arrCanv, s, off + 10*2, 8, color=3)
+        
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
     # draw_string(arrCanv, "E", off + 10*2, 0, color=2)
