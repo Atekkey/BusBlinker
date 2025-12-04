@@ -13,7 +13,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from samplebase import SampleBase
 import numpy as np
-MAP = {"M":"MON", "T":"TUE", "W":"WED", "R":"THU", "F":"FRI", "S":"SAT", "U":"SUN"}
+MAP = {"M":"MON", "T":"TUE", "W":"WED", "H":"THU", "F":"FRI", "S":"SAT", "U":"SUN"}
 
 def makeTimeMatrix(input):
     rows = 7
