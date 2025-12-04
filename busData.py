@@ -2,7 +2,7 @@ import requests
 from datetime import datetime, time
 
 def fetchData():
-    api_url = "https://api.uiucbus.com/api/getdeparturesbystop?stop_id=1STSTDM"
+    api_url = "https://api.uiucbus.com/api/getdeparturesbystop?stop_id=1STDAN"
     response = requests.get(api_url)
 
     if response.status_code == 200:
