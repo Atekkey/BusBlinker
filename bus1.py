@@ -53,13 +53,13 @@ def makeRegMatrix():
     for bus in busInfo:
         if 'N' in bus["headsign"]:
             s = str(bus["time_left"][0])[-1] + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 1, 7, color=1)
+            draw_string(arrCanv, s, off + 1, 7, color=3)
         if 'S' in bus["headsign"]:
             s = str(bus["time_left"][0])[-1] + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 10*1, 7, color=1)
+            draw_string(arrCanv, s, off + 10*1, 7, color=3)
         if 'E' in bus["headsign"]:
             s = str(bus["time_left"][0])[-1] + ":" + str(bus["time_left"][1]).zfill(2)
-            draw_string(arrCanv, s, off + 10*2, 7, color=1)
+            draw_string(arrCanv, s, off + 10*2, 7, color=3)
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
     draw_string(arrCanv, "E", off + 10*2, 0, color=2)
@@ -79,6 +79,8 @@ class test(SampleBase):
                     canvas.SetPixel(x, y, 153, 54, 199) # purp 
                 elif array[y, x] == 2:
                     canvas.SetPixel(x, y, 0, 255, 0) # G 
+                elif array[y, x] == 3:
+                    canvas.SetPixel(x, y, 255, 255, 255) # G 
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
     
