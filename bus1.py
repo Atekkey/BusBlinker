@@ -46,7 +46,7 @@ def draw_string(canvas, text, start_row, start_col, spacing=1):
 
 def makeRegMatrix():
     arrCanv = np.zeros((64, 32), dtype=int)
-    draw_string(arrCanv, "NSN_N", 2, 5)
+    draw_string(arrCanv, "NSNN", 0, 0)
     end = np.rot90(arrCanv, k=1)
     return end
 
