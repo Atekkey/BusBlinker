@@ -17,7 +17,7 @@ def fetchBusInfoFromData(data):
     # If no busses, return empty list
     if not departures: 
         return out
-    
+    found = set([])
     # For every bus get the headsign and expected time (split into multiple fields)
     for busInfo in departures:
         busDict = {}
@@ -25,6 +25,9 @@ def fetchBusInfoFromData(data):
         left = headsign.split(" ")[0]
         if left not in ["220N", "220S", "22N", "22S", "50E", "5E"]:
             continue
+        if left in found:
+            continue
+        found.add(left)
         expString = busInfo.get("expected", "")
         if expString == "":
             continue
@@ -44,6 +47,7 @@ def thisTimeSec():
     tot = int(h)*3600 + int(m)*60 + int(sec)
     print(tot)
     return tot
+
 data = fetchData()
 bus_info = fetchBusInfoFromData(data)
 print(bus_info)
