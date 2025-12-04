@@ -56,7 +56,7 @@ def makeRegMatrix():
         min, sec = bus["time_left"][0], bus["time_left"][1]
         min = 122
         if min > 59:
-            s = str(min // 60) + "_H"
+            s = str(round(min / 60, 2)) + "_H"
         elif min > 10:
             s = str(min) + "_M"
         else:
