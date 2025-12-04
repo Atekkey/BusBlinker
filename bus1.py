@@ -51,7 +51,7 @@ def makeRegMatrix():
     off = 1
     busInfo = myMain()
     for bus in busInfo:
-        if 'N' in bus["header"]:
+        if 'N' in bus["headsign"]:
             s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1])
             draw_string(arrCanv, s, off + 1, 10, color=1)
     draw_string(arrCanv, "N", off + 1, 0, color=1)
