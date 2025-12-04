@@ -46,14 +46,7 @@ class test(SampleBase):
                     canvas.SetPixel(x, y, 0, 0, 0)  
 
     def run(self):
-        img0 = Image.open("./BusBlinker/crest2.png").convert("RGB")
-        img = img0.rotate(90, expand=True) 
-        padding_top = 10
-        new_width = img.width + padding_top
-        new_height = img.height 
-        new_img = Image.new("RGB", (new_width, new_height), color=(0, 0, 0))
-        new_img.paste(img, (padding_top, 0))
-
+        
         canvas = self.matrix.CreateFrameCanvas()
         
         while True:
@@ -62,7 +55,7 @@ class test(SampleBase):
             sec = now.strftime("%S").zfill(2)
             matrix = makeTimeMatrix(hour_min) # + ":" +sec
             self.setMatrixOnCanvas(matrix, canvas)
-            canvas.SetImage(new_img)
+            
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
             time.sleep(1)
 
