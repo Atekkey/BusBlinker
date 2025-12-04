@@ -93,7 +93,7 @@ class test(SampleBase):
             self.setMatrixOnCanvas(mat, canvas)
             
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
-            time.sleep(1)
+            time.sleep(0.9)
 
 
 
