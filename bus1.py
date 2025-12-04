@@ -30,24 +30,25 @@ def makeTimeMatrix(input):
     
     return rotated
 
-def draw_char(canvas, char_array, top_left_row, top_left_col):
+def draw_char(canvas, char_array, top_left_row, top_left_col, color = 1):
     rows, cols = char_array.shape
-    canvas[top_left_row:top_left_row+rows, top_left_col:top_left_col+cols] = char_array
+    canvas[top_left_row:top_left_row+rows, top_left_col:top_left_col+cols] = char_array * color
 
-def draw_string(canvas, text, start_row, start_col, spacing=1):
+def draw_string(canvas, text, start_row, start_col, spacing=1, color = 1):
     col = start_col
     sevenByFive = digit_maps.sevenByFive
     for char in text:
         if char in sevenByFive:
             char_array = sevenByFive[char]
-            draw_char(canvas, char_array, start_row, col)
+            draw_char(canvas, char_array, start_row, col, color)
             col += char_array.shape[1] + spacing 
 
 
 def makeRegMatrix():
     arrCanv = np.zeros((64, 32), dtype=int)
-    draw_string(arrCanv, "NSNN", 0, 0)
-    draw_string(arrCanv, "S N", 8, 0)
+    draw_string(arrCanv, "NSNN", 0, 0, 1)
+    draw_string(arrCanv, "S N", 8, 0, 1)
+    draw_string(arrCanv, "E", 8, 0, 2)
     end = np.rot90(arrCanv, k=1)
     return end
 
@@ -62,6 +63,8 @@ class test(SampleBase):
             for x in range(array.shape[1]):
                 if array[y, x] == 1:
                     canvas.SetPixel(x, y, 153, 54, 199) # purp 
+                elif array[y, x] == 2:
+                    canvas.SetPixel(x, y, 0, 255, 0) # G 
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
     
