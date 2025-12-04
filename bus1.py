@@ -6,6 +6,8 @@ from datetime import datetime
 import digit_maps
 from PIL import Image
 
+from busData import myMain
+
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -47,6 +49,11 @@ def draw_string(canvas, text, start_row, start_col, spacing=1, color = 1):
 def makeRegMatrix():
     arrCanv = np.zeros((64, 32), dtype=int)
     off = 1
+    busInfo = myMain()
+    for bus in busInfo:
+        if 'N' in bus["header"]:
+            s = str(bus["time_left"][0]) + ":" + str(bus["time_left"][1])
+            draw_string(arrCanv, s, off + 1, 10, color=1)
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
     draw_string(arrCanv, "E", off + 10*2, 0, color=2)

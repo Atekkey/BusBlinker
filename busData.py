@@ -1,5 +1,6 @@
 import requests
-from datetime import datetime
+from datetime import datetime, time
+
 def fetchData():
     api_url = "https://api.uiucbus.com/api/getdeparturesbystop?stop_id=1STSTDM"
     response = requests.get(api_url)
@@ -33,25 +34,29 @@ def fetchBusInfoFromData(data):
             continue
         expStringHMS = expString[-14:-6]
         busDict["expectedHMS"] = expStringHMS
-        busDict["totSec"] = int(expStringHMS[:2]) * 3600 + int(expStringHMS[3:5]) * 60 + int(expStringHMS[6:8])
+        h = int(expStringHMS[:2])
+        m = int(expStringHMS[3:5])
+        s = int(expStringHMS[6:8])
+        busDict["time"] = time(hour=h, minute=m, second=s)
         out.append(busDict)
     
     return out
 
-def thisTimeSec():
+
+
+def myMain():
+    data = fetchData()
+    bus_info = fetchBusInfoFromData(data)
+    today = datetime.today()
     now = datetime.now()
-    h,m  = now.strftime("%I:%M").split(":")
-    sec = now.strftime("%S").zfill(2)
-    tot = int(h)*3600 + int(m)*60 + int(sec)
-    return tot
 
-data = fetchData()
-bus_info = fetchBusInfoFromData(data)
-thisTimeSec()
+    for bus in bus_info:
+        total_seconds = (datetime.combine(today, bus["time"]) - now).total_seconds()
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        bus["time_left"] = (minutes, seconds)
+    
+    return bus_info
 
-for bus in bus_info:
-    remSec = (bus["totSec"] - thisTimeSec()) % (86400)
-    remMin = remSec // 60
-    print(remMin)
 
 
