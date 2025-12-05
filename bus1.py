@@ -14,6 +14,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from samplebase import SampleBase
 import numpy as np
 
+global temp
+temp = None
 
 def makeTimeMatrix(input):
     rows = 7
@@ -47,7 +49,8 @@ def draw_string(canvas, text, start_row, start_col, spacing=1, color = 1):
             col += char_array.shape[1] + spacing 
 
 
-def makeRegMatrix(fetch_weather, TEMP):
+def makeRegMatrix(fetch_weather):
+    temp = None
     arrCanv = np.zeros((64, 32), dtype=int)
     
     off = 1
@@ -75,9 +78,9 @@ def makeRegMatrix(fetch_weather, TEMP):
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
 
     if fetch_weather:
-        TEMP = str(fetchTemp())
-    if TEMP != None:
-        draw_string(arrCanv, TEMP+"_F", off + 10*2, 0, color=4)
+        temp = str(fetchTemp())
+    if temp != None:
+        draw_string(arrCanv, temp+"_F", off + 10*2, 0, color=4)
     
 
     now = datetime.now()
@@ -91,7 +94,7 @@ def makeRegMatrix(fetch_weather, TEMP):
     draw_string(arrCanv, hour_min, off + 10*5, 2, color=8)
     
     end = np.rot90(arrCanv, k=1)
-    return end, TEMP
+    return end
 
 
 class test(SampleBase):
@@ -131,7 +134,7 @@ class test(SampleBase):
             i += 1
             i = i % 600
             fetch_weather = (i == 3)
-            mat, TEMP = makeRegMatrix(fetch_weather, TEMP) 
+            mat, TEMP = makeRegMatrix(fetch_weather) 
             self.setMatrixOnCanvas(mat, canvas)
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
             time.sleep(1)
