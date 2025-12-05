@@ -142,7 +142,7 @@ class test(SampleBase):
         i = 0
         while True:
             i += 1
-            i = i % 600
+            i = i % (60 * 60) # every 60 min refetch weather
             fetch_weather = i == 1
             mat = makeRegMatrix(fetch_weather) 
             self.setMatrixOnCanvas(mat, canvas)
