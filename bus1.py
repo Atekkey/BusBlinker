@@ -55,40 +55,47 @@ def makeRegMatrix(fetch_weather):
     off = 1
     N, S = myMain()
     
-    min, sec = N["time_left"][0], N["time_left"][1]
-    if min > 59:
-        s = str(min // 60) + "_H"
-    elif min > 9:
-        s = str(min) + "_M"
-    else:
-        s = str(min) + ":" + str(sec).zfill(2)
-    draw_string(arrCanv, s, off + 1, 8, color=3)
-    
-    min, sec = S["time_left"][0], S["time_left"][1]
-    if min > 59:
-        s = str(min // 60) + "_H"
-    elif min > 9:
-        s = str(min) + "_M"
-    else:
-        s = str(min) + ":" + str(sec).zfill(2)
-    draw_string(arrCanv, s, off + 10*1, 8, color=3)
-        
+    # NORTH
     draw_string(arrCanv, "N", off + 1, 0, color=1)
+    if N != None:
+        min, sec = N["time_left"][0], N["time_left"][1]
+        if min > 59:
+            s = str(min // 60) + "_H"
+        elif min > 9:
+            s = str(min) + "_M"
+        else:
+            s = str(min) + ":" + str(sec).zfill(2)
+        
+        draw_string(arrCanv, s, off + 1, 8, color=3)
+    
+    # SOUTH
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
+    if S != None:
+        min, sec = S["time_left"][0], S["time_left"][1]
+        if min > 59:
+            s = str(min // 60) + "_H"
+        elif min > 9:
+            s = str(min) + "_M"
+        else:
+            s = str(min) + ":" + str(sec).zfill(2)
+        draw_string(arrCanv, s, off + 10*1, 8, color=3)
+    
+    
 
+    # WEATHER
     if fetch_weather:
         temp = str(fetchTemp())
     if temp != None:
-        draw_string(arrCanv, temp+"_F", off + 10*2, 5, color=4)
+        draw_string(arrCanv, temp+"_F", off + 10*2, 5, color=10)
     
-
+    # TIME INFO
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = now.strftime("%a")
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=6) # FRI
-    draw_string(arrCanv, date, off + 10*4, 0, color=5) # 12/05
-    draw_string(arrCanv, hour_min, off + 10*5, 2, color=8) # 01:04
+    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=9) # FRI
+    draw_string(arrCanv, date, off + 10*4, 0, color=9) # 12/05
+    draw_string(arrCanv, hour_min, off + 10*5, 2, color=9) # 01:04
     
     end = np.rot90(arrCanv, k=1)
     return end
@@ -119,6 +126,10 @@ class test(SampleBase):
                     canvas.SetPixel(x, y, 5+a, 86+a, 165+a) # uiuc B
                 elif array[y, x] == 8:
                     canvas.SetPixel(x, y, 255, 95, 5) # uiuc OR
+                elif array[y, x] == 9:
+                    canvas.SetPixel(x, y, 168, 56, 69) # Old Rose
+                elif array[y, x] == 10:
+                    canvas.SetPixel(x, y, 171, 171, 171) # Grey
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
 
@@ -129,7 +140,7 @@ class test(SampleBase):
         while True:
             i += 1
             i = i % 600
-            fetch_weather = i == 2
+            fetch_weather = i == 1
             mat = makeRegMatrix(fetch_weather) 
             self.setMatrixOnCanvas(mat, canvas)
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
