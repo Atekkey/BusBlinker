@@ -51,7 +51,7 @@ def draw_string(canvas, text, start_row, start_col, spacing=1, color = 1):
 
 def makeRegMatrix(fetch_weather):
     arrCanv = np.zeros((64, 32), dtype=int)
-    
+    global temp
     off = 1
     N, S = myMain()
     
