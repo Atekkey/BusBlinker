@@ -127,9 +127,11 @@ class test(SampleBase):
                 elif array[y, x] == 8:
                     canvas.SetPixel(x, y, 255, 95, 5) # uiuc OR
                 elif array[y, x] == 9:
-                    canvas.SetPixel(x, y, 168, 56, 69) # Old Rose
+                    a = 70
+                    canvas.SetPixel(x, y, 168 + a + a, 56, 69 + a) # Old Rose
                 elif array[y, x] == 10:
-                    canvas.SetPixel(x, y, 171, 171, 171) # Grey
+                    a = 40
+                    canvas.SetPixel(x, y, 171+a, 171+a, 171+a) # Grey
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
 
