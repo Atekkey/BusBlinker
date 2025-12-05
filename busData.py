@@ -81,8 +81,3 @@ def myMain():
     S["time_left"] = (minutes, seconds)
     
     return N, S
-
-
-
-binfo = myMain()
-print(binfo)
