@@ -74,8 +74,11 @@ def makeRegMatrix(draw_weather=False):
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
 
-    temp = str(fetchTemp())
-    draw_string(arrCanv, temp+"_F", off + 10*2, 0, color=4)
+    try:
+        temp = str(fetchTemp())
+        draw_string(arrCanv, temp+"_F", off + 10*2, 0, color=4)
+    except:
+        pass
 
     now = datetime.now()
     date = now.strftime("%m/%d")
