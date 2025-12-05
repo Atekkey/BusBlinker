@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime, time
+import os
 
 def fetchData():
     api_url = "https://api.uiucbus.com/api/getdeparturesbystop?stop_id=1STDAN"
@@ -55,7 +56,13 @@ def fetchBusInfoFromData(data):
     
     return north, south
 
-
+def fetchTemp():
+    api_url = 'http://api.openweathermap.org/data/2.5/weather'
+    appid = os.getenv("API_KEY") 
+    r = requests.get(url=api_url, params=dict(q='Champaign', APPID=appid))
+    K = (r.json())["main"]["feels_like"]
+    F = ((K - 273.15) * 9/5) + 32
+    return int(F)
 
 def myMain():
     data = fetchData()

@@ -6,7 +6,7 @@ from datetime import datetime
 import digit_maps
 from PIL import Image
 
-from busData import myMain
+from busData import myMain, fetchTemp
 import time
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -47,7 +47,7 @@ def draw_string(canvas, text, start_row, start_col, spacing=1, color = 1):
             col += char_array.shape[1] + spacing 
 
 
-def makeRegMatrix():
+def makeRegMatrix(draw_weather=False):
     arrCanv = np.zeros((64, 32), dtype=int)
     
     off = 1
@@ -73,7 +73,9 @@ def makeRegMatrix():
         
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
-    # draw_string(arrCanv, "E", off + 10*2, 0, color=2)
+
+    temp = str(fetchTemp())
+    draw_string(arrCanv, temp+"_F", off + 10*2, 0, color=4)
 
     now = datetime.now()
     date = now.strftime("%m/%d")
@@ -116,15 +118,17 @@ class test(SampleBase):
                     canvas.SetPixel(x, y, 255, 95, 5) # uiuc OR
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
-    
+
     def run(self):
         
         canvas = self.matrix.CreateFrameCanvas()
-        
+        i = -1
         while True:
-            mat = makeRegMatrix() 
+            i += 1
+            i %= 1000
+            draw_weather = (i == 0)
+            mat = makeRegMatrix(draw_weather) 
             self.setMatrixOnCanvas(mat, canvas)
-            
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
             time.sleep(1)
 
