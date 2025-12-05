@@ -129,7 +129,7 @@ class test(SampleBase):
         while True:
             i += 1
             i = i % 600
-            fetch_weather = i == 3
+            fetch_weather = i == 2
             mat = makeRegMatrix(fetch_weather) 
             self.setMatrixOnCanvas(mat, canvas)
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
