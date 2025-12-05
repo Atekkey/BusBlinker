@@ -124,11 +124,11 @@ class test(SampleBase):
     def run(self):
         
         canvas = self.matrix.CreateFrameCanvas()
-        i = -1
+        i = 0
         while True:
             i += 1
-            i %= 1000
-            draw_weather = (i == 0)
+            i = i % 1000
+            draw_weather = (i == 3)
             mat = makeRegMatrix(draw_weather) 
             self.setMatrixOnCanvas(mat, canvas)
             canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
