@@ -51,20 +51,25 @@ def makeRegMatrix():
     arrCanv = np.zeros((64, 32), dtype=int)
     
     off = 1
-    busInfo = myMain()
-    for bus in busInfo:
-        min, sec = bus["time_left"][0], bus["time_left"][1]
-        if min > 59:
-            s = str(min // 60) + "_H"
-        elif min > 9:
-            s = str(min) + "_M"
-        else:
-            s = str(min) + ":" + str(sec).zfill(2)
-
-        if 'N' in bus["headsign"]:
-            draw_string(arrCanv, s, off + 1, 8, color=3)
-        elif 'S' in bus["headsign"]:
-            draw_string(arrCanv, s, off + 10*1, 8, color=3)
+    N, S = myMain()
+    
+    min, sec = N["time_left"][0], N["time_left"][1]
+    if min > 59:
+        s = str(min // 60) + "_H"
+    elif min > 9:
+        s = str(min) + "_M"
+    else:
+        s = str(min) + ":" + str(sec).zfill(2)
+    draw_string(arrCanv, s, off + 1, 8, color=3)
+    
+    min, sec = S["time_left"][0], S["time_left"][1]
+    if min > 59:
+        s = str(min // 60) + "_H"
+    elif min > 9:
+        s = str(min) + "_M"
+    else:
+        s = str(min) + ":" + str(sec).zfill(2)
+    draw_string(arrCanv, s, off + 10*1, 8, color=3)
         
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)

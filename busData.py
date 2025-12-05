@@ -13,22 +13,24 @@ def fetchData():
 
 def fetchBusInfoFromData(data):
     departures = data.get("departures", [])
-    out = []
+    south, north = None, None
     
     # If no busses, return empty list
     if not departures: 
-        return out
+        return ()
     found = set([])
     # For every bus get the headsign and expected time (split into multiple fields)
     for busInfo in departures:
         busDict = {}
         busDict["headsign"] = headsign = busInfo.get("headsign", "")
         left = headsign.split(" ")[0]
-        if left not in ["220N", "220S", "22N", "22S", "50E", "5E"]:
+        n, let = left[0], left[-1]
+        name = n+let
+        if name not in ["2N", "2S", "5E"]:
             continue
-        if left in found:
+        if name in found:
             continue
-        found.add(left)
+        found.add(name)
         expString = busInfo.get("expected", "")
         if expString == "":
             continue
@@ -39,25 +41,41 @@ def fetchBusInfoFromData(data):
         s = int(expStringHMS[6:8])
         busDict["time"] = time(hour=h, minute=m, second=s)
         busDict["e_min"] = busInfo["expected_mins"]
-        out.append(busDict)
+        if name == "2S":
+            if south == None:
+                south = busDict
+            elif busDict["e_min"] < south["e_min"]:
+                south = busDict
+        elif name == "2N":
+            if north == None:
+                north = busDict
+            elif busDict["e_min"] < north["e_min"]:
+                north = busDict
+            
     
-    return out
+    return north, south
 
 
 
 def myMain():
     data = fetchData()
-    bus_info = fetchBusInfoFromData(data)
+    N, S = fetchBusInfoFromData(data)
     today = datetime.today()
     now = datetime.now()
-
-    for bus in bus_info:
-        total_seconds = (datetime.combine(today, bus["time"]) - now).total_seconds()
-        minutes = int(total_seconds // 60)
-        seconds = int(total_seconds % 60)
-        bus["time_left"] = (minutes, seconds)
     
-    return bus_info
+    total_seconds = (datetime.combine(today, N["time"]) - now).total_seconds()
+    minutes = int(total_seconds // 60)
+    seconds = int(total_seconds % 60)
+    N["time_left"] = (minutes, seconds)
+
+    total_seconds = (datetime.combine(today, S["time"]) - now).total_seconds()
+    minutes = int(total_seconds // 60)
+    seconds = int(total_seconds % 60)
+    S["time_left"] = (minutes, seconds)
+    
+    return N, S
 
 
 
+binfo = myMain()
+print(binfo)
