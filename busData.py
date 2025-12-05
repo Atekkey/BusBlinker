@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime, time
 import os
+from env import W_KEY
 
 def fetchData():
     api_url = "https://api.uiucbus.com/api/getdeparturesbystop?stop_id=1STDAN"
@@ -58,7 +59,7 @@ def fetchBusInfoFromData(data):
 
 def fetchTemp():
     api_url = 'http://api.openweathermap.org/data/2.5/weather'
-    appid = os.getenv("W_KEY")
+    appid = W_KEY
     print("\nID\n: ", appid)
     r = requests.get(url=api_url, params=dict(q='Champaign', APPID=appid))
     K = (r.json())["main"]["feels_like"]
