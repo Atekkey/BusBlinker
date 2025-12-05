@@ -50,7 +50,6 @@ def draw_string(canvas, text, start_row, start_col, spacing=1, color = 1):
 
 
 def makeRegMatrix(fetch_weather):
-    temp = None
     arrCanv = np.zeros((64, 32), dtype=int)
     
     off = 1
@@ -86,12 +85,10 @@ def makeRegMatrix(fetch_weather):
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = now.strftime("%a")
-    
-    day_of_week = day_of_week
-    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=6)
-    draw_string(arrCanv, date, off + 10*4, 0, color=5)
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, hour_min, off + 10*5, 2, color=8)
+    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=6) # FRI
+    draw_string(arrCanv, date, off + 10*4, 0, color=5) # 12/05
+    draw_string(arrCanv, hour_min, off + 10*5, 2, color=8) # 01:04
     
     end = np.rot90(arrCanv, k=1)
     return end
