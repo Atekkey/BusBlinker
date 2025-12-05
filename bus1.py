@@ -84,9 +84,9 @@ def makeRegMatrix(fetch_weather):
 
     # WEATHER
     if fetch_weather:
-        temp = str(fetchTemp())
+        temp = str(fetchTemp() * - 1)
     if temp != None:
-        draw_string(arrCanv, temp+"_^F", off + 10*2, 5, color=9)
+        draw_string(arrCanv, temp+"^F", off + 10*2, 5, color=9)
     
     # TIME INFO
     now = datetime.now()
