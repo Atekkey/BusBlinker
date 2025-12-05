@@ -86,16 +86,16 @@ def makeRegMatrix(fetch_weather):
     if fetch_weather:
         temp = str(fetchTemp())
     if temp != None:
-        draw_string(arrCanv, temp+"_F", off + 10*2, 5, color=10)
+        draw_string(arrCanv, temp+"_F", off + 10*2, 5, color=9)
     
     # TIME INFO
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = now.strftime("%a")
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=9) # FRI
-    draw_string(arrCanv, date, off + 10*4, 0, color=9) # 12/05
-    draw_string(arrCanv, hour_min, off + 10*5, 2, color=9) # 01:04
+    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=6) # FRI
+    draw_string(arrCanv, date, off + 10*4, 0, color=7) # 12/05
+    draw_string(arrCanv, hour_min, off + 10*5, 2, color=8) # 01:04
     
     end = np.rot90(arrCanv, k=1)
     return end
@@ -114,7 +114,7 @@ class test(SampleBase):
                 elif array[y, x] == 2:
                     canvas.SetPixel(x, y, 0, 255, 0) # G 
                 elif array[y, x] == 3:
-                    a = -44
+                    a = 0
                     canvas.SetPixel(x, y, 255 + a, 255 + a, 255 + a) # W
                 elif array[y, x] == 4:
                     canvas.SetPixel(x, y, 127, 164, 199) # LB
@@ -131,7 +131,7 @@ class test(SampleBase):
                     a = 70
                     canvas.SetPixel(x, y, 168 + a, 56 + a, 69 + a) # Old Rose
                 elif array[y, x] == 10:
-                    a = 40
+                    a = 0
                     canvas.SetPixel(x, y, 171+a, 171+a, 171+a) # Grey
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
