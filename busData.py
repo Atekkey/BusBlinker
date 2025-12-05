@@ -58,13 +58,10 @@ def fetchBusInfoFromData(data):
 
 def fetchTemp():
     api_url = 'http://api.openweathermap.org/data/2.5/weather'
-    appid = os.getenv("W_KEY") 
+    appid = os.getenv("W_KEY")
     print("\nID\n: ", appid)
-    # r = requests.get(url=api_url, params=dict(q='Champaign', APPID=appid))
-    # print(r)
-    # print(r.json())
-    # K = (r.json())["main"]["feels_like"]
-    K = 273
+    r = requests.get(url=api_url, params=dict(q='Champaign', APPID=appid))
+    K = (r.json())["main"]["feels_like"]
     F = ((K - 273.15) * 9/5) + 32
     return int(F)
 
