@@ -114,7 +114,8 @@ class test(SampleBase):
                 elif array[y, x] == 2:
                     canvas.SetPixel(x, y, 0, 255, 0) # G 
                 elif array[y, x] == 3:
-                    canvas.SetPixel(x, y, 255, 255, 255) # W
+                    a = -44
+                    canvas.SetPixel(x, y, 255 + a, 255 + a, 255 + a) # W
                 elif array[y, x] == 4:
                     canvas.SetPixel(x, y, 127, 164, 199) # LB
                 elif array[y, x] == 5:
