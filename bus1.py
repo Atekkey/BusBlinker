@@ -74,9 +74,9 @@ def makeRegMatrix(draw_weather=False):
     draw_string(arrCanv, "N", off + 1, 0, color=1)
     draw_string(arrCanv, "S", off + 10*1, 0, color=1)
 
-    
-    temp = str(fetchTemp())
-    draw_string(arrCanv, temp+"_F", off + 10*2, 0, color=4)
+    if draw_weather:
+        temp = str(fetchTemp())
+        draw_string(arrCanv, temp+"_F", off + 10*2, 0, color=4)
     
 
     now = datetime.now()
@@ -127,7 +127,7 @@ class test(SampleBase):
         i = 0
         while True:
             i += 1
-            i = i % 1000
+            i = i % 600
             draw_weather = (i == 3)
             mat = makeRegMatrix(draw_weather) 
             self.setMatrixOnCanvas(mat, canvas)
