@@ -56,35 +56,43 @@ def makeRegMatrix(fetch_weather):
     N, S = myMain()
     
     # NORTH
-    draw_string(arrCanv, "N", off + 1, 0, color=1)
-    if N != None:
-        min, sec = N["time_left"][0], N["time_left"][1]
-        if min > 59:
-            s = str(min // 60) + "_H"
-        elif min > 9:
-            s = str(min) + "_M"
-        else:
-            s = str(min) + ":" + str(sec).zfill(2)
-        
+    try:
+        draw_string(arrCanv, "N", off + 1, 0, color=1)
+        if N != None:
+            min, sec = N["time_left"][0], N["time_left"][1]
+            if min > 59:
+                s = str(min // 60) + "_H"
+            elif min > 9:
+                s = str(min) + "_M"
+            else:
+                s = str(min) + ":" + str(sec).zfill(2)
+    except Exception as e:
+        print("Error drawing N:", e)
+    finally:
         draw_string(arrCanv, s, off + 1, 8, color=3)
     
     # SOUTH
-    draw_string(arrCanv, "S", off + 10*1, 0, color=1)
-    if S != None:
-        min, sec = S["time_left"][0], S["time_left"][1]
-        if min > 59:
-            s = str(min // 60) + "_H"
-        elif min > 9:
-            s = str(min) + "_M"
-        else:
-            s = str(min) + ":" + str(sec).zfill(2)
+    try:
+        draw_string(arrCanv, "S", off + 10*1, 0, color=1)
+        if S != None:
+            min, sec = S["time_left"][0], S["time_left"][1]
+            if min > 59:
+                s = str(min // 60) + "_H"
+            elif min > 9:
+                s = str(min) + "_M"
+            else:
+                s = str(min) + ":" + str(sec).zfill(2)
+    except Exception as e:
+        print("Error drawing S:", e)
+    finally:
         draw_string(arrCanv, s, off + 10*1, 8, color=3)
     
-    
-
     # WEATHER
     if fetch_weather:
-        temp = str(fetchTemp())
+        try:
+            temp = str(fetchTemp())
+        except Exception as e:
+            print("Error fetching weather:", e)
     if temp != None:
         draw_string(arrCanv, temp+"^F", off + 10*2, 5, color=9)
     
@@ -144,9 +152,12 @@ class test(SampleBase):
             i += 1
             i = i % (60 * 60) # every 60 min refetch weather
             fetch_weather = i == 1
-            mat = makeRegMatrix(fetch_weather) 
-            self.setMatrixOnCanvas(mat, canvas)
-            canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
+            try:
+                mat = makeRegMatrix(fetch_weather) 
+                self.setMatrixOnCanvas(mat, canvas)
+                canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
+            except Exception as e:
+                print("Error in main loop:", e)
             time.sleep(1)
 
 
