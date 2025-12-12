@@ -14,6 +14,8 @@ def fetchData():
         return ""
 
 def fetchBusInfoFromData(data):
+    if not data:
+        return None, None
     departures = data.get("departures", [])
     south, north = None, None
     
