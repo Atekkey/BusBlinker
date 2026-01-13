@@ -17,7 +17,7 @@ def makeTimeMatrix(input):
     arrays = []
     digit_map = digit_maps.sevenByFive
     for char in input:
-        arrays.append(digit_map[char])
+        arrays.append(digit_map[char]*2)
         # Add spacing between digits
         arrays.append(np.zeros((rows, 1), dtype=int))
     
@@ -42,6 +42,8 @@ class test(SampleBase):
             for x in range(array.shape[1]):
                 if array[y, x] == 1:
                     canvas.SetPixel(x, y, 155, 155, 155) # Gray
+                if array[y, x] == 2:
+                    canvas.SetPixel(x, y, 255, 0, 0) # Red
                 else:
                     canvas.SetPixel(x, y, 0, 0, 0)  
 

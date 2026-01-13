@@ -15,3 +15,5 @@ sudo nohup python3.11 BusBlinker/bus1.py $F &
 sudo python3.11 BusBlinker/img.py $F
 
 sudo nohup python3.11 BusBlinker/gif3.py $F &
+
+sudo python3.11 BusBlinker/crest_time12.py $F
