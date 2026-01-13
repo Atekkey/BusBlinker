@@ -145,7 +145,6 @@ class test(SampleBase):
                     canvas.SetPixel(x, y, 0, 0, 0)  
 
     def run(self):
-        
         canvas = self.matrix.CreateFrameCanvas()
         i = 0
         while True:
