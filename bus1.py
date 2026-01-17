@@ -71,7 +71,8 @@ def makeRegMatrix(fetch_weather):
     except Exception as e:
         print("Error drawing N:", e)
     finally:
-        draw_string(arrCanv, s, off + 1, 8, color=3)
+        if N != None and s != None:
+            draw_string(arrCanv, s, off + 1, 8, color=3)
     
     # SOUTH
     try:
@@ -87,7 +88,8 @@ def makeRegMatrix(fetch_weather):
     except Exception as e:
         print("Error drawing S:", e)
     finally:
-        draw_string(arrCanv, s, off + 10*1, 8, color=3)
+        if S != None and s != None:
+            draw_string(arrCanv, s, off + 10*1, 8, color=3)
     
     # WEATHER
     if fetch_weather:
