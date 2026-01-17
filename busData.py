@@ -72,7 +72,7 @@ def myMain():
     N, S = fetchBusInfoFromData(data)
     today = datetime.today()
     now = datetime.now()
-    
+    print("0datastart")
     if N != None:
         total_seconds = (datetime.combine(today, N["time"]) - now).total_seconds()
         minutes = int(total_seconds // 60)
@@ -85,4 +85,5 @@ def myMain():
         seconds = int(total_seconds % 60)
         S["time_left"] = (minutes, seconds)
     
+    print("0dataret")
     return N, S
