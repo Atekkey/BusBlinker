@@ -73,14 +73,16 @@ def myMain():
     today = datetime.today()
     now = datetime.now()
     
-    total_seconds = (datetime.combine(today, N["time"]) - now).total_seconds()
-    minutes = int(total_seconds // 60)
-    seconds = int(total_seconds % 60)
-    N["time_left"] = (minutes, seconds)
-
-    total_seconds = (datetime.combine(today, S["time"]) - now).total_seconds()
-    minutes = int(total_seconds // 60)
-    seconds = int(total_seconds % 60)
-    S["time_left"] = (minutes, seconds)
+    if N != None:
+        total_seconds = (datetime.combine(today, N["time"]) - now).total_seconds()
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        N["time_left"] = (minutes, seconds)
+    
+    if S != None:
+        total_seconds = (datetime.combine(today, S["time"]) - now).total_seconds()
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        S["time_left"] = (minutes, seconds)
     
     return N, S
