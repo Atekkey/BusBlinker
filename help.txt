@@ -19,4 +19,4 @@ sudo nohup python3.11 BusBlinker/gif3.py $F &
 sudo python3.11 BusBlinker/crest_time12.py $F
 
 EDIT STARTUP:
-nano /etc/rc.local
+sudo nano /etc/rc.local
