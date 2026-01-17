@@ -68,7 +68,10 @@ def fetchTemp():
     return int(F)
 
 def myMain():
+    print("0datastart")
     data = fetchData()
+    if not data:
+        return None, None
     N, S = fetchBusInfoFromData(data)
     today = datetime.today()
     now = datetime.now()
