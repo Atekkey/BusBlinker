@@ -21,7 +21,7 @@ def fetchBusInfoFromData(data):
     
     # If no busses, return empty list
     if not departures: 
-        return ()
+        return None, None
     found = set([])
     # For every bus get the headsign and expected time (split into multiple fields)
     for busInfo in departures:
