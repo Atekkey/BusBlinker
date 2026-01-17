@@ -68,14 +68,17 @@ def fetchTemp():
     return int(F)
 
 def myMain():
-    print("0datastart")
+    print("0d1")
     data = fetchData()
+    print("0d2")
     if not data:
         return None, None
     N, S = fetchBusInfoFromData(data)
+    print("0d3")
     today = datetime.today()
+    print("0d4")
     now = datetime.now()
-    print("0datastart")
+    
     if N != None:
         total_seconds = (datetime.combine(today, N["time"]) - now).total_seconds()
         minutes = int(total_seconds // 60)
