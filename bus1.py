@@ -53,10 +53,7 @@ def makeRegMatrix(fetch_weather):
     arrCanv = np.zeros((64, 32), dtype=int)
     global temp
     off = 1
-    print("0a")
-    N, S = myMain()
-    print("0b")
-    
+    N, S = myMain()    
     # NORTH
     try:
         draw_string(arrCanv, "N", off + 1, 0, color=1)
@@ -103,14 +100,13 @@ def makeRegMatrix(fetch_weather):
     # TIME INFO
     now = datetime.now()
     date = now.strftime("%m/%d")
-    day_of_week = now.strftime("%a")[0]
+    day_of_week = (now.strftime("%a").upper().strip())[:2]
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, day_of_week.upper().strip(), off + 10*3, 7, color=6) # FRI
+    draw_string(arrCanv, day_of_week, off + 10*3, 7, color=6) # FRI
     draw_string(arrCanv, date, off + 10*4, 0, color=5) # 12/05
     draw_string(arrCanv, hour_min, off + 10*5, 2, color=5) # 01:04
     
     end = np.rot90(arrCanv, k=1)
-    print("0end")
     return end
 
 
@@ -157,11 +153,8 @@ class test(SampleBase):
             i = i % (60 * 60) # every 60 min refetch weather
             fetch_weather = i == 1
             try:
-                print("0")
                 mat = makeRegMatrix(fetch_weather) 
-                print("1")
                 self.setMatrixOnCanvas(mat, canvas)
-                print("2")
                 canvas = self.matrix.SwapOnVSync(canvas) # Refreshes the canvas
             except Exception as e:
                 print("Error in main loop:", e)
