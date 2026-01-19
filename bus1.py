@@ -95,15 +95,15 @@ def makeRegMatrix(fetch_weather):
         except Exception as e:
             print("Error fetching weather:", e)
     if temp != None:
-        draw_string(arrCanv, temp+"^F", off + 10*3, 0, color=9)
+        draw_string(arrCanv, temp+"^", off + 10*3, 1, color=9)
     
     # TIME INFO
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = (now.strftime("%a").upper().strip())[:2]
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, day_of_week, off + 10*3, 7, color=6) # FRI
-    draw_string(arrCanv, date, off + 10*4, 0, color=5) # 12/05
+    draw_string(arrCanv, day_of_week, off + 10*3, 20, color=6) # FRI
+    draw_string(arrCanv, date, off + 10*4, 1, color=5) # 12/05
     draw_string(arrCanv, hour_min, off + 10*5, 2, color=5) # 01:04
     
     end = np.rot90(arrCanv, k=1)
