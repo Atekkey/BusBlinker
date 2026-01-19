@@ -53,7 +53,7 @@ def makeRegMatrix(fetch_weather):
     arrCanv = np.zeros((64, 32), dtype=int)
     global temp
     off = 1
-    N, S = myMain()    
+    N, S, E = myMain()    
     # NORTH
     try:
         draw_string(arrCanv, "N", off + 1, 0, color=1)

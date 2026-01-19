@@ -13,6 +13,54 @@ def fetchData():
     else:
         return ""
 
+def fetchDataGreen():
+    api_url = "https://api.uiucbus.com/api/getdeparturesbystop?stop_id=GRN2ND"
+    response = requests.get(api_url)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    else:
+        return ""
+    
+def fetchBusInfoFromDataGreen(data):
+    if not data:
+        return None
+    departures = data.get("departures", [])
+    east = None
+    
+    # If no busses, return None
+    if not departures: 
+        return None
+    
+    # For every bus get the headsign and expected time (split into multiple fields)
+    for busInfo in departures:
+        busDict = {}
+        busDict["headsign"] = headsign = busInfo.get("headsign", "")
+        left = headsign.split(" ")[0]
+        n, let = left[0], left[-1]
+        name = n+let
+        if name != "5E":
+            continue
+        expString = busInfo.get("expected", "")
+        if expString == "":
+            continue
+        expStringHMS = expString[-14:-6]
+        busDict["expectedHMS"] = expStringHMS
+        h = int(expStringHMS[:2])
+        m = int(expStringHMS[3:5])
+        s = int(expStringHMS[6:8])
+        busDict["time"] = time(hour=h, minute=m, second=s)
+        busDict["e_min"] = busInfo["expected_mins"]
+
+        if east == None:
+            east = busDict
+        elif busDict["e_min"] < east["e_min"]:
+            east = busDict
+            
+    
+    return east
+
+
 def fetchBusInfoFromData(data):
     if not data:
         return None, None
@@ -68,10 +116,10 @@ def fetchTemp():
     return int(F)
 
 def myMain():
-    data = fetchData()
-    if not data:
-        return None, None
-    N, S = fetchBusInfoFromData(data)
+    dataNS = fetchData()
+    N, S = fetchBusInfoFromData(dataNS) if dataNS else None, None
+    dataE = fetchDataGreen()
+    E = fetchBusInfoFromDataGreen(dataE) if dataE else None
     today = datetime.today()
     now = datetime.now()
     
@@ -87,4 +135,10 @@ def myMain():
         seconds = int(total_seconds % 60)
         S["time_left"] = (minutes, seconds)
     
-    return N, S
+    if E != None:
+        total_seconds = (datetime.combine(today, E["time"]) - now).total_seconds()
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        E["time_left"] = (minutes, seconds)
+    
+    return N, S, E
