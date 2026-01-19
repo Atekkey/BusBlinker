@@ -89,7 +89,6 @@ def makeRegMatrix(fetch_weather):
             draw_string(arrCanv, s, off + 10*1, 8, color=3)
 
     # EAST Green
-    E = None
     try:
         draw_string(arrCanv, "E", off + 10*2, 0, color=2)
         if E != None:
