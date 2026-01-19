@@ -100,7 +100,7 @@ def makeRegMatrix(fetch_weather):
     # TIME INFO
     now = datetime.now()
     date = now.strftime("%m/%d")
-    day_of_week = (now.strftime("%a").upper().strip())[:2]
+    day_of_week = (now.strftime("%a").upper().strip())[:3]
     dowMap = {"MON": "M", "TUE": "T", "WED": "W", "THU": "H", "FRI": "F", "SAT": "S", "SUN": "U"}
     day_of_week = dowMap.get(day_of_week, day_of_week)
     hour_min = now.strftime("%I:%M")
