@@ -141,7 +141,7 @@ class test(SampleBase):
                     a = 20
                     canvas.SetPixel(x, y, 153+a, 54+a, 199+a) # purp 
                 elif array[y, x] == 2:
-                    canvas.SetPixel(x, y, 0, 200, 0) # G 
+                    canvas.SetPixel(x, y, 132, 245, 66) # G 
                 elif array[y, x] == 3:
                     a = 0
                     canvas.SetPixel(x, y, 255 + a, 255 + a, 255 + a) # W
