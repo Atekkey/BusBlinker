@@ -117,7 +117,7 @@ def fetchTemp():
 
 def myMain():
     dataNS = fetchData()
-    N, S = fetchBusInfoFromData(dataNS) if dataNS else None, None
+    N, S = fetchBusInfoFromData(dataNS) if dataNS else (None, None)
     dataE = fetchDataGreen()
     E = fetchBusInfoFromDataGreen(dataE) if dataE else None
     today = datetime.today()
