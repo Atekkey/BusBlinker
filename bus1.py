@@ -104,9 +104,9 @@ def makeRegMatrix(fetch_weather):
     dowMap = {"MON": "M", "TUE": "T", "WED": "W", "THU": "H", "FRI": "F", "SAT": "S", "SUN": "U"}
     day_of_week = dowMap.get(day_of_week, day_of_week)
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, day_of_week, off + 10*3, 25, color=6) # FRI
+    draw_string(arrCanv, day_of_week, off + 10*3, 26, color=6) # FRI
     draw_string(arrCanv, date, off + 10*4, 1, color=5) # 12/05
-    draw_string(arrCanv, hour_min, off + 10*5, 2, color=5) # 01:04
+    draw_string(arrCanv, hour_min, off + 10*5, 3, color=5) # 01:04
     
     end = np.rot90(arrCanv, k=1)
     return end
