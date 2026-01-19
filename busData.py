@@ -63,7 +63,7 @@ def fetchTemp():
     api_url = 'http://api.openweathermap.org/data/2.5/weather'
     appid = W_KEY
     r = requests.get(url=api_url, params=dict(q='Champaign', APPID=appid))
-    K = (r.json())["main"]["feels_like"]
+    K = (r.json())["main"]["temp_max"] # Taking Max, check if accurate
     F = ((K - 273.15) * 9/5) + 32
     return int(F)
 
