@@ -87,6 +87,24 @@ def makeRegMatrix(fetch_weather):
     finally:
         if S != None and s != None:
             draw_string(arrCanv, s, off + 10*1, 8, color=3)
+
+    # EAST Green
+    E = None
+    try:
+        draw_string(arrCanv, "E", off + 10*2, 0, color=2)
+        if E != None:
+            min, sec = E["time_left"][0], E["time_left"][1]
+            if min > 59:
+                s = str(min // 60) + "_H"
+            elif min > 9:
+                s = str(min) + "_M"
+            else:
+                s = str(min) + ":" + str(sec).zfill(2)
+    except Exception as e:
+        print("Error drawing E:", e)
+    finally:
+        if E != None and s != None:
+            draw_string(arrCanv, s, off + 10*2, 8, color=3)
     
     # WEATHER
     if fetch_weather:
