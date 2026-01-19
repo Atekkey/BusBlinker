@@ -68,15 +68,11 @@ def fetchTemp():
     return int(F)
 
 def myMain():
-    print("0d1")
     data = fetchData()
-    print("0d2")
     if not data:
         return None, None
     N, S = fetchBusInfoFromData(data)
-    print("0d3")
     today = datetime.today()
-    print("0d4")
     now = datetime.now()
     
     if N != None:
@@ -91,5 +87,4 @@ def myMain():
         seconds = int(total_seconds % 60)
         S["time_left"] = (minutes, seconds)
     
-    print("0dataret")
     return N, S
