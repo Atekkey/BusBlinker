@@ -83,6 +83,9 @@ def makeRegMatrix(fetch_weather):
                 s = str(min) + "_M"
             else:
                 s = str(min) + ":" + str(sec).zfill(2)
+                if True: #min < 0 or sec < 0:
+                    s = "HERE"
+                
     except Exception as e:
         print("Error drawing S:", e)
     finally:
