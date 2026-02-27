@@ -115,6 +115,7 @@ def makeRegMatrix(fetch_weather):
         draw_string(arrCanv, temp+"^", off + 10*3, 1, color=9)
     
     # TIME INFO
+    temp = -30
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = (now.strftime("%a").upper().strip())[:3]
