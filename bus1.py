@@ -37,7 +37,7 @@ def makeTimeMatrix(input):
 
 def draw_char(canvas, char_array, top_left_row, top_left_col, color = 1):
     rows, cols = char_array.shape
-    canvas[top_left_row:top_left_row+rows, top_left_col:top_left_col+cols] = char_array * color
+    canvas[top_left_row:top_left_row+rows+1, top_left_col:top_left_col+cols+1] = char_array * color
 
 def draw_string(canvas, text, start_row, start_col, spacing=1, color = 1):
     col = start_col
