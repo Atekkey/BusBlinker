@@ -119,11 +119,12 @@ def makeRegMatrix(fetch_weather):
     date = now.strftime("%m/%d")
     day_of_week = (now.strftime("%a").upper().strip())[:3]
     dowMap = {"MON": "M", "TUE": "T", "WED": "W", "THU": "H", "FRI": "F", "SAT": "S", "SUN": "U"}
-    if temp != None and int(temp) > 0:
+    tempPos = temp != None and int(temp) > 0
+    if tempPos:
         dowMap = {"MON": "MO", "TUE": "TU", "WED": "WE", "THU": "TH", "FRI": "FR", "SAT": "SA", "SUN": "SU"}
     day_of_week = dowMap.get(day_of_week, day_of_week)
     hour_min = now.strftime("%I:%M")
-    draw_string(arrCanv, day_of_week, off + 10*3, 25, color=6) # FRI
+    draw_string(arrCanv, day_of_week, off + 10*3, 25 if not tempPos else 15, color=6) # FRI
     draw_string(arrCanv, date, off + 10*4, 1, color=5) # 12/05
     draw_string(arrCanv, hour_min, off + 10*5, 3, color=5) # 01:04
     
