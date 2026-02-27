@@ -152,7 +152,7 @@ class test(SampleBase):
                 elif array[y, x] == 4:
                     canvas.SetPixel(x, y, 127, 164, 199) # LB
                 elif array[y, x] == 5:
-                    canvas.SetPixel(x, y, 98, 174, 179) # LB2 
+                    canvas.SetPixel(x, y, 98, 174+25, 179) # LB2 
                 elif array[y, x] == 6:
                     canvas.SetPixel(x, y, 178, 232, 116) # lg
                 elif array[y, x] == 7:
