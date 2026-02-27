@@ -113,7 +113,7 @@ def makeRegMatrix(fetch_weather):
         except Exception as e:
             print("Error fetching weather:", e)
     if temp != None:
-        draw_string(arrCanv, temp+"^", off + 10*3, 1, color=9)
+        draw_string(arrCanv, temp+"^", off + 10*3, 0, color=9)
     
     # TIME INFO
     
