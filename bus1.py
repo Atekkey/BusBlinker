@@ -109,13 +109,14 @@ def makeRegMatrix(fetch_weather):
     if fetch_weather:
         try:
             temp = str(fetchTemp())
+            temp = str(-30)
         except Exception as e:
             print("Error fetching weather:", e)
     if temp != None:
         draw_string(arrCanv, temp+"^", off + 10*3, 1, color=9)
     
     # TIME INFO
-    temp = str(-30)
+    
     now = datetime.now()
     date = now.strftime("%m/%d")
     day_of_week = (now.strftime("%a").upper().strip())[:3]
