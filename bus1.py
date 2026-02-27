@@ -128,7 +128,7 @@ def makeRegMatrix(fetch_weather):
     hour_min = now.strftime("%I:%M")
     draw_string(arrCanv, day_of_week, off + 10*3, 25 if not tempPos else 17, color=6) # FRI
     draw_string(arrCanv, date, off + 10*4, 1, color=7) # 12/05 WAS 1
-    draw_string(arrCanv, hour_min, off + 10*5, 3, spacing = 0, color=8) # 01:04 WAS 5
+    draw_string(arrCanv, hour_min, off + 10*5, 3, spacing = 2, color=8) # 01:04 WAS 5
     
     end = np.rot90(arrCanv, k=1)
     return end
