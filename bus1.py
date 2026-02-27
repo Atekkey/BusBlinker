@@ -109,7 +109,6 @@ def makeRegMatrix(fetch_weather):
     if fetch_weather:
         try:
             temp = str(fetchTemp())
-            temp = str(-30)
         except Exception as e:
             print("Error fetching weather:", e)
     if temp != None:
